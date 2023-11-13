@@ -83,9 +83,11 @@
       <AssemblyReference>System.Runtime.Serialization.Formatters</AssemblyReference>
       <AssemblyReference>System.Private.DataContractSerialization</AssemblyReference>
       <AssemblyReference>System.Runtime.Serialization.Primitives</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities.Design</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities.ViewModels</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="Main Sequence - String Manipulation" sap:VirtualizedContainerService.HintSize="496,4265.333333333333" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="Main Sequence - String Manipulation" sap:VirtualizedContainerService.HintSize="496,4702" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="x:String" Name="strInput" />
       <Variable x:TypeArguments="x:Boolean" Name="boolResult" />
@@ -93,6 +95,7 @@
       <Variable x:TypeArguments="x:String" Name="StrInput2" />
       <Variable x:TypeArguments="x:String" Name="StrInput3" />
       <Variable x:TypeArguments="s:DateTime" Name="NextDate" />
+      <Variable x:TypeArguments="x:String" Name="StrInput4" />
     </Sequence.Variables>
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
@@ -142,7 +145,7 @@
     <ui:LogMessage DisplayName="Log Message - Reverse" sap:VirtualizedContainerService.HintSize="434,144.66666666666666" sap2010:WorkflowViewState.IdRef="LogMessage_21" Level="[UiPath.Core.Activities.LogLevel.Info]" Message="[StrReverse(StrInput3)]" />
     <ui:LogMessage DisplayName="Log Message - Concat" sap:VirtualizedContainerService.HintSize="434,144.66666666666666" sap2010:WorkflowViewState.IdRef="LogMessage_22" Level="[UiPath.Core.Activities.LogLevel.Info]" Message="[String.Concat(&quot;1&quot;,&quot;B&quot;,&quot;3&quot;,&quot;A&quot;)]" />
     <ui:LogMessage DisplayName="Log Message - Format   Watch Date Sample" sap:VirtualizedContainerService.HintSize="434,144.66666666666666" sap2010:WorkflowViewState.IdRef="LogMessage_23" Level="[UiPath.Core.Activities.LogLevel.Info]" Message="[String.Format(&quot;This is the current date{0} and the next date is {1}&quot;,now,now.AddDays(730.5))]" />
-    <Assign sap:VirtualizedContainerService.HintSize="434,85.33333333333333" sap2010:WorkflowViewState.IdRef="Assign_4">
+    <Assign DisplayName="Assign - Adding Years to a date" sap:VirtualizedContainerService.HintSize="434,85.33333333333333" sap2010:WorkflowViewState.IdRef="Assign_4">
       <Assign.To>
         <OutArgument x:TypeArguments="s:DateTime">[NextDate]</OutArgument>
       </Assign.To>
@@ -150,6 +153,16 @@
         <InArgument x:TypeArguments="s:DateTime">[Now.AddYears(2)]</InArgument>
       </Assign.Value>
     </Assign>
-    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="434,144.66666666666666" sap2010:WorkflowViewState.IdRef="LogMessage_26" Level="[UiPath.Core.Activities.LogLevel.Info]" Message="[NextDate]" />
+    <ui:LogMessage DisplayName="Log Message - Future Date" sap:VirtualizedContainerService.HintSize="434,144.66666666666666" sap2010:WorkflowViewState.IdRef="LogMessage_26" Level="[UiPath.Core.Activities.LogLevel.Info]" Message="[&quot;The PO expiry date is &quot;+NextDate.ToShortDateString.ToString]" />
+    <Assign DisplayName="Assign - For replace example" sap:VirtualizedContainerService.HintSize="434,85.33333333333333" sap2010:WorkflowViewState.IdRef="Assign_5">
+      <Assign.To>
+        <OutArgument x:TypeArguments="x:String">[StrInput4]</OutArgument>
+      </Assign.To>
+      <Assign.Value>
+        <InArgument x:TypeArguments="x:String">This is the RPA tool by BluePrism</InArgument>
+      </Assign.Value>
+    </Assign>
+    <ui:LogMessage DisplayName="Log Message - Replace" sap:VirtualizedContainerService.HintSize="434,144.66666666666666" sap2010:WorkflowViewState.IdRef="LogMessage_27" Level="[UiPath.Core.Activities.LogLevel.Info]" Message="[StrInput4.Replace(&quot;BluePrism&quot;,&quot;UIPath&quot;)]" />
+    <ui:MessageBox Caption="{x:Null}" ChosenButton="{x:Null}" AutoCloseAfter="00:00:00" DisplayName="Message Box" sap:VirtualizedContainerService.HintSize="434,86.66666666666667" sap2010:WorkflowViewState.IdRef="MessageBox_1" Text="[StrInput4.remove(0,12)]" />
   </Sequence>
 </Activity>
